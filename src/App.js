@@ -51,6 +51,12 @@ class App extends React.Component {
     });
   };
 
+  clearComplete = () => {
+    this.setState({
+      todos: this.state.todos.filter(todo => !todo.completed)
+    });
+  };
+
   render() {
     return (
       <div>
