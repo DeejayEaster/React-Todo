@@ -16,12 +16,13 @@ class TodoForm extends React.Component {
 
   submitTodo = e => {
     e.preventDefault();
-    this.props.addTodo(this.state.Todo);
+    console.log("e", this.state);
+    this.props.addTodo(this.state.task);
   };
 
   render() {
     return (
-      <form onSubmit={this.submitItem}>
+      <form onSubmit={this.submitTodo}>
         <input
           type="text"
           value={this.todo}
