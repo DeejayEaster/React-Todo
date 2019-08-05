@@ -24,6 +24,33 @@ class App extends React.Component {
     };
   }
 
+  toggleTodo = id => {
+    console.log(id);
+    this.setState({
+      groceries: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed
+          };
+        } else {
+          return todo;
+        }
+      })
+    });
+  };
+
+  addTodo = taskName => {
+    const newTodo = {
+      task: taskName,
+      id: Date.now(),
+      completed: false
+    };
+    this.setState({
+      todos: [...this.state.todos, newTodo]
+    });
+  };
+
   render() {
     return (
       <div>
