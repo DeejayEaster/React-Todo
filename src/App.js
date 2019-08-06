@@ -22,13 +22,14 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: "Deejay",
-      todos: todoData
+      todos: localStorage.getItem("todos")
+        ? JSON.parse(localStorage.getItem("todos"))
+        : [],
+      item: ""
     };
   }
 
   toggleTodo = id => {
-    console.log("id props: ", id);
     this.setState({
       todos: this.state.todos.map(todo => {
         if (todo.id === id) {
@@ -52,6 +53,10 @@ class App extends React.Component {
     this.setState({
       todos: [...this.state.todos, newTodo]
     });
+    localStorage.setItem(
+      "todos",
+      JSON.stringify([...this.state.todos, newTodo])
+    );
   };
 
   clearCompleted = () => {
@@ -62,15 +67,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>A sick todo app</h2>
-        <TodoForm addTodo={this.addTodo} />
+      <>
+        <div className="head-container">
+          <h2>A sick todo app</h2>
+          <TodoForm addTodo={this.addTodo} />
+        </div>
         <TodoList
           todos={this.state.todos}
           toggleTodo={this.toggleTodo}
           clearCompleted={this.clearCompleted}
         />
-      </div>
+      </>
     );
   }
 }

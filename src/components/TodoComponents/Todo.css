@@ -10,8 +10,14 @@ body {
   text-decoration: line-through;
   color: black;
 }
+.head-container {
+  display: flex;
+  justify-content: space-around;
+}
 form {
   width: 50%;
+  height: 50%;
+  align-self: center;
   display: flex;
   justify-content: flex-end;
 }
